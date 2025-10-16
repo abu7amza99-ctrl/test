@@ -1,0 +1,117 @@
+```css
+/* Arabic Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap');
+
+/* Base Styles */
+body {
+    font-family: 'Noto Naskh Arabic', serif;
+    background-color: #f8f9fa;
+    color: #333;
+    direction: rtl;
+    text-align: right;
+}
+
+/* Golden Theme */
+.golden-bg {
+    background-color: rgba(212, 175, 55, 0.2);
+}
+
+.golden-text {
+    color: #D4AF37;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.golden-border {
+    border: 1px solid #D4AF37;
+}
+
+/* Sidebar Animation */
+.sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
+/* Modal Animation */
+.modal {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Name Decoration Styles */
+.name-box {
+    border: 1px dashed #D4AF37;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.name-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Professional Decoration Styles */
+.color-option {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.color-option:hover {
+    transform: scale(1.1);
+}
+
+.gradient-option {
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.gradient-option:hover {
+    transform: scale(1.05);
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #D4AF37;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #c9a42e;
+    transform: translateY(-2px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 80%;
+    }
+    
+    .name-box {
+        font-size: 0.9rem;
+    }
+}
+
+/* Animation for Elements */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+```
