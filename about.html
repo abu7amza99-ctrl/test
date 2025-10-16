@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عالم التصاميم والزخرفة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Noto Naskh Arabic', serif;
+        }
+        .golden-bg {
+            background-color: rgba(212, 175, 55, 0.2);
+        }
+        .golden-text {
+            color: #D4AF37;
+            text-shadow: 1px 1px 2px black;
+        }
+        .golden-border {
+            border: 1px solid #D4AF37;
+        }
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        .sidebar.open {
+            transform: translateX(0);
+        }
+        .modal {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .modal.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Welcome Modal -->
+    <div id="welcomeModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="golden-bg p-8 rounded-lg max-w-md w-full relative">
+            <div class="flex justify-center mb-4">
+                <img src="abu7amza.png" alt="App Icon" class="w-16 h-16">
+            </div>
+            <h2 class="text-2xl font-bold text-center mb-4 golden-text">مرحباً بك في عالم التصاميم والزخرفة</h2>
+            <p class="text-gray-800 mb-6 text-center">منصة احترافية لتصميم وزخرفة النصوص بلمسات ذهبية مميزة. ابدأ رحلتك في عالم الزخرفة الآن!</p>
+            <button onclick="closeWelcomeModal()" class="w-full py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition">ابدأ</button>
+        </div>
+    </div>
+
+    <!-- Main Interface -->
+    <div class="min-h-screen flex flex-col">
+        <!-- Top Bar -->
+        <header class="bg-white shadow-md">
+            <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+                <!-- Sidebar Toggle -->
+                <button onclick="toggleSidebar()" class="p-2">
+                    <img src="yhbg.png" alt="Menu" class="w-6 h-6">
+                </button>
+                
+                <!-- App Logo and Name -->
+                <div class="flex items-center">
+                    <img src="abu7amza.png" alt="App Logo" class="w-10 h-10 mr-2">
+                    <h1 class="text-xl golden-text font-bold" style="font-family: 'DecoType Naskh', serif;">عالم التصاميم والزخرفة</h1>
+                </div>
+                
+                <!-- Control Panel Toggle -->
+                <button onclick="toggleControlPanel()" class="p-2">
+                    <img src="sitting.png" alt="Settings" class="w-6 h-6">
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow container mx-auto px-4 py-8">
+            <div id="homeSection" class="section">
+                <div class="mb-8">
+                    <div class="relative">
+                        <input type="text" placeholder="ابحث عن ملفات الصور..." class="w-full p-4 pr-12 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                        <i data-feather="search" class="absolute right-3 top-4 text-gray-400"></i>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <!-- Sample images - these would be populated from the control panel -->
+                    <div class="golden-bg rounded-lg overflow-hidden shadow-md">
+                        <img src="http://static.photos/abstract/320x240/1" alt="Design" class="w-full h-32 object-cover">
+                        <div class="p-2">
+                            <p class="text-sm truncate">تصميم_1.png</p>
+                            <button class="text-xs text-blue-500 hover:text-blue-700">تحميل</button>
+                        </div>
+                    </div>
+                    <!-- More image cards would be here -->
+                </div>
+            </div>
+            
+            <!-- Other sections would be hidden by default and shown when navigating -->
+        </main>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-40">
+        <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+            <h2 class="text-lg font-bold">الأقسام</h2>
+            <button onclick="toggleSidebar()" class="text-gray-500 hover:text-black">
+                <i data-feather="x"></i>
+            </button>
+        </div>
+        <nav class="p-4">
+            <ul class="space-y-2">
+                <li><a href="#" class="block p-2 hover:bg-gray-100 rounded" onclick="showSection('home')">الصفحة الرئيسية</a></li>
+                <li><a href="#" class="block p-2 hover:bg-gray-100 rounded" onclick="showSection('professional')">الزخرفة الاحترافية</a></li>
+                <li><a href="#" class="block p-2 hover:bg-gray-100 rounded" onclick="showSection('names')">زخرفة الأسماء</a></li>
+                <li><a href="#" class="block p-2 hover:bg-gray-100 rounded" onclick="showSection('about')">لمحة عن التطبيق</a></li>
+                <li><a href="#" class="block p-2 hover:bg-gray-100 rounded" onclick="showSection('contact')">اتصل بنا</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Control Panel -->
+    <div id="controlPanel" class="modal fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="golden-bg p-6 rounded-lg w-full max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">لوحة التحكم</h3>
+                <button onclick="toggleControlPanel()" class="text-gray-700 hover:text-black">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            
+            <div class="mb-4">
+                <label class="block text-sm font-medium mb-1">كلمة المرور:</label>
+                <input type="password" class="w-full p-2 border border-gray-300 rounded">
+            </div>
+            
+            <button class="w-full py-2 bg-black text-white rounded hover:bg-gray-800 transition">دخول</button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize feather icons
+        feather.replace();
+        
+        // Show welcome modal on load
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('welcomeModal').classList.add('flex');
+        });
+        
+        function closeWelcomeModal() {
+            document.getElementById('welcomeModal').classList.remove('flex');
+            document.getElementById('welcomeModal').classList.add('hidden');
+        }
+        
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+        
+        function toggleControlPanel() {
+            document.getElementById('controlPanel').classList.toggle('open');
+        }
+        
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId + 'Section').classList.remove('hidden');
+            
+            // Close sidebar
+            toggleSidebar();
+        }
+    </script>
+</body>
+</html>
