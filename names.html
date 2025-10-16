@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>زخرفة الأسماء</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Noto Naskh Arabic', serif;
+        }
+        .golden-bg {
+            background-color: rgba(212, 175, 55, 0.2);
+        }
+        .golden-text {
+            color: #D4AF37;
+            text-shadow: 1px 1px 2px black;
+        }
+        .name-box {
+            border: 1px dashed #D4AF37;
+            transition: all 0.3s ease;
+        }
+        .name-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Top Bar -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Sidebar Toggle -->
+            <button onclick="toggleSidebar()" class="p-2">
+                <img src="yhbg.png" alt="Menu" class="w-6 h-6">
+            </button>
+            
+            <!-- App Logo and Name -->
+            <div class="flex items-center">
+                <img src="abu7amza.png" alt="App Logo" class="w-10 h-10 mr-2">
+                <h1 class="text-xl golden-text font-bold" style="font-family: 'DecoType Naskh', serif;">عالم التصاميم والزخرفة</h1>
+            </div>
+            
+            <!-- Control Panel Toggle -->
+            <button onclick="toggleControlPanel()" class="p-2">
+                <img src="sitting.png" alt="Settings" class="w-6 h-6">
+            </button>
+        </div>
+    </header>
+
+    <!-- Names Decoration Section -->
+    <main class="container mx-auto px-4 py-8">
+        <h2 class="text-2xl font-bold mb-6 text-center golden-text">زخرفة الأسماء</h2>
+        
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="mb-6">
+                <label class="block text-sm font-medium mb-2">ادخل الاسم:</label>
+                <input type="text" id="nameInput" placeholder="اكتب اسمك هنا..." class="w-full p-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                <button onclick="generateNames()" class="mt-4 w-full py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition">زخرفة</button>
+            </div>
+        </div>
+        
+        <!-- Results -->
+        <div class="mb-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="nameResults">
+                <!-- Names will be dynamically inserted here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-40 transform -translate-x-full transition-transform duration-300">
+        <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+            <h2 class="text-lg font-bold">الأقسام</h2>
+            <button onclick="toggleSidebar()" class="text-gray-500 hover:text-black">
+                <i data-feather="x"></i>
+            </button>
+        </div>
+        <nav class="p-4">
+            <ul class="space-y-2">
+                <li><a href="index.html" class="block p-2 hover:bg-gray-100 rounded">الصفحة الرئيسية</a></li>
+                <li><a href="professional.html" class="block p-2 hover:bg-gray-100 rounded">الزخرفة الاحترافية</a></li>
+                <li><a href="#" class="block p-2 bg-gray-100 rounded">زخرفة الأسماء</a></li>
+                <li><a href="about.html" class="block p-2 hover:bg-gray-100 rounded">لمحة عن التطبيق</a></li>
+                <li><a href="contact.html" class="block p-2 hover:bg-gray-100 rounded">اتصل بنا</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Control Panel -->
+    <div id="controlPanel" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="golden-bg p-6 rounded-lg w-full max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">لوحة التحكم</h3>
+                <button onclick="toggleControlPanel()" class="text-gray-700 hover:text-black">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            
+            <div class="mb-4">
+                <label class="block text-sm font-medium mb-1">كلمة المرور:</label>
+                <input type="password" class="w-full p-2 border border-gray-300 rounded">
+            </div>
+            
+            <button class="w-full py-2 bg-black text-white rounded hover:bg-gray-800 transition">دخول</button>
+        </div>
+    </div>
+
+    <script>
+        feather.replace();
+        
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('translate-x-0');
+        }
+        
+        function toggleControlPanel() {
+            document.getElementById('controlPanel').classList.toggle('hidden');
+        }
+        
+        function generateNames() {
+            const name = document.getElementById('nameInput').value;
+            const resultsContainer = document.getElementById('nameResults');
+            resultsContainer.innerHTML = '';
+            
+            if (!name) return;
+            
+            // Sample decorations - in a real app these would come from JSON/JS files
+            const decorations = [
+                `❖ ${name} ❖`,
+                `『${name}』`,
+                `◈ ${name} ◈`,
+                `【${name}】`,
+                `『${name}』`,
+                `≪ ${name} ≫`,
+                `〖${name}〗`,
+                `『${name}』`,
+                `『 ${name} 』`,
+                `『${name}』`,
+                `【 ${name} 】`,
+                `『${name}』`,
+                `❖ ${name} ❖`,
+                `『${name}』`,
+                `『${name}』`,
+                `『${name}』`
+            ];
+            
+            decorations.forEach(decoration => {
+                const box = document.createElement('div');
+                box.className = 'name-box p-4 text-center bg-white rounded-lg cursor-pointer hover:bg-gray-50';
+                box.textContent = decoration;
+                box.onclick = function() {
+                    navigator.clipboard.writeText(decoration);
+                    alert('تم نسخ الاسم المزخرف!');
+                };
+                resultsContainer.appendChild(box);
+            });
+        }
+    </script>
+</body>
+</html>
