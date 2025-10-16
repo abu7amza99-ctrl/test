@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الزخرفة الاحترافية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Noto Naskh Arabic', serif;
+        }
+        .golden-bg {
+            background-color: rgba(212, 175, 55, 0.2);
+        }
+        .golden-text {
+            color: #D4AF37;
+            text-shadow: 1px 1px 2px black;
+        }
+        .golden-border {
+            border: 1px solid #D4AF37;
+        }
+        .color-option {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+        .gradient-option {
+            width: 60px;
+            height: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Top Bar -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Sidebar Toggle -->
+            <button onclick="toggleSidebar()" class="p-2">
+                <img src="yhbg.png" alt="Menu" class="w-6 h-6">
+            </button>
+            
+            <!-- App Logo and Name -->
+            <div class="flex items-center">
+                <img src="abu7amza.png" alt="App Logo" class="w-10 h-10 mr-2">
+                <h1 class="text-xl golden-text font-bold" style="font-family: 'DecoType Naskh', serif;">عالم التصاميم والزخرفة</h1>
+            </div>
+            
+            <!-- Control Panel Toggle -->
+            <button onclick="toggleControlPanel()" class="p-2">
+                <img src="sitting.png" alt="Settings" class="w-6 h-6">
+            </button>
+        </div>
+    </header>
+
+    <!-- Professional Decoration Section -->
+    <main class="container mx-auto px-4 py-8">
+        <h2 class="text-2xl font-bold mb-6 text-center golden-text">الزخرفة الاحترافية</h2>
+        
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="flex flex-col md:flex-row gap-4 mb-6">
+                <div class="flex-1">
+                    <label class="block text-sm font-medium mb-1">اكتب النص أو أرفق صورة:</label>
+                    <input type="text" placeholder="أدخل النص هنا..." class="w-full p-3 border border-gray-300 rounded">
+                    <input type="file" accept="image/*" class="mt-2 w-full">
+                </div>
+                
+                <div class="flex-1">
+                    <label class="block text-sm font-medium mb-1">اختر الخط:</label>
+                    <select class="w-full p-3 border border-gray-300 rounded">
+                        <option>ديواني</option>
+                        <option>ثلث</option>
+                        <option>نسخ</option>
+                        <option>رقعة</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="mb-6">
+                <label class="block text-sm font-medium mb-2">اختر نوع التلوين:</label>
+                <div class="flex gap-4 mb-4">
+                    <button id="solidBtn" class="px-4 py-2 bg-gray-200 rounded">ثابت</button>
+                    <button id="gradientBtn" class="px-4 py-2 bg-gray-200 rounded">متدرج</button>
+                    <button id="textureBtn" class="px-4 py-2 bg-gray-200 rounded">تلبيس</button>
+                </div>
+                
+                <!-- Color Options -->
+                <div id="solidColors" class="flex flex-wrap gap-2 mb-4">
+                    <div class="color-option bg-red-500 rounded"></div>
+                    <div class="color-option bg-blue-500 rounded"></div>
+                    <div class="color-option bg-green-500 rounded"></div>
+                    <div class="color-option bg-yellow-500 rounded"></div>
+                    <div class="color-option bg-purple-500 rounded"></div>
+                    <!-- More colors -->
+                </div>
+                
+                <!-- Gradient Options -->
+                <div id="gradientColors" class="hidden flex flex-wrap gap-2 mb-4">
+                    <div class="gradient-option bg-gradient-to-r from-red-500 to-yellow-500 rounded"></div>
+                    <div class="gradient-option bg-gradient-to-r from-blue-500 to-purple-500 rounded"></div>
+                    <div class="gradient-option bg-gradient-to-r from-green-500 to-teal-500 rounded"></div>
+                    <div class="gradient-option bg-gradient-to-r from-yellow-500 to-red-500 rounded"></div>
+                    <div class="gradient-option bg-gradient-to-r from-purple-500 to-pink-500 rounded"></div>
+                    <!-- More gradients -->
+                </div>
+                
+                <!-- Texture Options -->
+                <div id="textureOptions" class="hidden grid grid-cols-3 gap-2">
+                    <img src="http://static.photos/textures/120x90/1" class="w-full h-16 object-cover rounded">
+                    <img src="http://static.photos/textures/120x90/2" class="w-full h-16 object-cover rounded">
+                    <img src="http://static.photos/textures/120x90/3" class="w-full h-16 object-cover rounded">
+                    <!-- More textures -->
+                </div>
+            </div>
+            
+            <div class="mb-6">
+                <label class="block text-sm font-medium mb-2">خلفية النص:</label>
+                <select class="w-full p-3 border border-gray-300 rounded">
+                    <option>شفاف</option>
+                    <option>أبيض</option>
+                    <option>أسود</option>
+                    <option>ذهبي</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Preview -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h3 class="text-lg font-medium mb-4">معاينة النتيجة:</h3>
+            <div class="flex justify-center items-center h-64 golden-bg rounded-lg">
+                <p id="previewText" class="text-4xl font-bold" style="font-family: 'DecoType Naskh';">النص المزخرف</p>
+            </div>
+        </div>
+        
+        <!-- Download Options -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-lg font-medium mb-4">تحميل النتيجة:</h3>
+            <div class="flex flex-col md:flex-row gap-4">
+                <select class="p-3 border border-gray-300 rounded flex-1">
+                    <option>PNG</option>
+                    <option>JPG</option>
+                    <option>SVG</option>
+                </select>
+                <select class="p-3 border border-gray-300 rounded flex-1">
+                    <option>500×500</option>
+                    <option>1000×1000</option>
+                    <option>2000×2000</option>
+                </select>
+                <button class="p-3 bg-black text-white rounded hover:bg-gray-800 transition flex-1">تحميل</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-40 transform -translate-x-full transition-transform duration-300">
+        <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+            <h2 class="text-lg font-bold">الأقسام</h2>
+            <button onclick="toggleSidebar()" class="text-gray-500 hover:text-black">
+                <i data-feather="x"></i>
+            </button>
+        </div>
+        <nav class="p-4">
+            <ul class="space-y-2">
+                <li><a href="index.html" class="block p-2 hover:bg-gray-100 rounded">الصفحة الرئيسية</a></li>
+                <li><a href="#" class="block p-2 bg-gray-100 rounded">الزخرفة الاحترافية</a></li>
+                <li><a href="names.html" class="block p-2 hover:bg-gray-100 rounded">زخرفة الأسماء</a></li>
+                <li><a href="about.html" class="block p-2 hover:bg-gray-100 rounded">لمحة عن التطبيق</a></li>
+                <li><a href="contact.html" class="block p-2 hover:bg-gray-100 rounded">اتصل بنا</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Control Panel -->
+    <div id="controlPanel" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="golden-bg p-6 rounded-lg w-full max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">لوحة التحكم</h3>
+                <button onclick="toggleControlPanel()" class="text-gray-700 hover:text-black">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            
+            <div class="mb-4">
+                <label class="block text-sm font-medium mb-1">كلمة المرور:</label>
+                <input type="password" class="w-full p-2 border border-gray-300 rounded">
+            </div>
+            
+            <button class="w-full py-2 bg-black text-white rounded hover:bg-gray-800 transition">دخول</button>
+        </div>
+    </div>
+
+    <script>
+        feather.replace();
+        
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('translate-x-0');
+        }
+        
+        function toggleControlPanel() {
+            document.getElementById('controlPanel').classList.toggle('hidden');
+        }
+        
+        // Color type switching
+        document.getElementById('solidBtn').addEventListener('click', function() {
+            document.getElementById('solidColors').classList.remove('hidden');
+            document.getElementById('gradientColors').classList.add('hidden');
+            document.getElementById('textureOptions').classList.add('hidden');
+        });
+        
+        document.getElementById('gradientBtn').addEventListener('click', function() {
+            document.getElementById('solidColors').classList.add('hidden');
+            document.getElementById('gradientColors').classList.remove('hidden');
+            document.getElementById('textureOptions').classList.add('hidden');
+        });
+        
+        document.getElementById('textureBtn').addEventListener('click', function() {
+            document.getElementById('solidColors').classList.add('hidden');
+            document.getElementById('gradientColors').classList.add('hidden');
+            document.getElementById('textureOptions').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
